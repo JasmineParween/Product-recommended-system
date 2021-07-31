@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Product Card</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <!-- <img src="pawprint.png" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
+                Bootstrap
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-6 mb-5 mb-lg-0 mt-5">
+                <div class="row">
+                    <div class="col-md-2 order-2 order-md-1">
+                        <!-- Slider thumbnails-->
+
+                    </div>
+                    <div class="col-md-10 order-1 order-md-2 mb-4 mb-lg-0">
+                        <!-- Item slider-->
+                        <div class="swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events"
+                            id="detailSlider">
+                            <div class="swiper-wrapper" id="swiper-wrapper-48f5f2a5c0dca2c1" aria-live="polite"
+                                style="transform: translate3d(0px, 0px, 0px);">
+                                <div class="swiper-slide swiper-slide-active" role="group"
+                                    style="width: 373px; margin-right: 10px;"><a class="glightbox" href="#"><img
+                                            class="img-fluid" src="{{rec_products.iloc[rec_products.index[0]]['img']}}"
+                                            alt=".."></a></div>
+
+                            </div>
+                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Item info-->
+            <div class="col-lg-6 mt-5">
+                <div class="badge bg-info small rounded-0 mb-2">Trending</div>
+                <h1>{{rec_products.iloc[rec_products.index[0]]['product_name'].split(",")[0]}}</h1>
+                <br><br>
+                <!-- <p class="h4">$250</p> -->
+                <p class="text-small mb-4">{{rec_products.iloc[rec_products.index[0]]['description']}}</p>
+                <a href="{{rec_products.iloc[rec_products.index[0]]['product_url']}}" class="btn btn-outline-dark">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mt-5">
+                <h1>Similar Products</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for idx in rec_products.index[1:] %}
+                <div class="col-sm-3 mt-3 pt-3">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top "
+                            src="{{rec_products.iloc[rec_products.index[idx]]['img']}}"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{rec_products.iloc[rec_products.index[idx]]['product_name']}}</h5>
+                            <a href="/product/{{rec_products.iloc[rec_products.index[idx]]['product_name_val']}}" class="btn btn-outline-dark">Know More</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
